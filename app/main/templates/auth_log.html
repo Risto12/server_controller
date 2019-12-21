@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Activity log</h1>
+    {% for auth in auths %}
+        <div class="card mb-4 box-shadow">
+          <div class="card-header">
+            {% if auth.status == "Failure" %}
+                <h4 class="my-0 font-weight-normal text-danger" >{{ auth.status }}</h4>
+              {% else %}
+                <h4 class="my-0 font-weight-normal text-success" >{{ auth.status }}</h4>
+              {% endif %}
+          </div>
+          <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-4">
+                <li>User: {{ auth.username }}</li>
+                <li>IP: {{ auth.ip }}</li>
+              <li>Time: {{ auth.log_time }}</li>
+              <li><a class="btn btn-danger mt-3" href="{{ url_for('main.delete_log_entry') }}?id={{ auth.id }}" role="button">Delete</a></li>
+            </ul>
+          </div>
+        </div>
+    {% endfor %}
+{% endblock %}

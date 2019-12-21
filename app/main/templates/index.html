@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+      <section class="jumbotron text-center">
+        <div class="container">
+          <h1 class="jumbotron-heading">Welcome to vesanto.me</h1>
+            <p>Below are all the services currently running on this server</p>
+        </div>
+      </section>
+    <div class="container mt-4 jumbotron">
+        <div class="row">
+        {% for service in services %}
+            <div class="card mb-4 box-shadow mr-3">
+              <div class="card-header">
+                    <h4 class="my-0 font-weight-normal text-success" >{{ service.name }}</h4>
+              </div>
+              <div class="card-body">
+                <ul class="list-unstyled mt-3 mb-4">
+                    <li>Description: {{ service.description }}</li>
+                    <li>Updated: {{ service.updated }}</li>
+                    <li>Port: {{ service.port }}</li>
+                    <li>Status: {{ service.status }}</li>
+                    <li>Admin: {{ service.admin }}</li>
+                    <li>Github: {{ service.github }}</li>
+                </ul>
+              </div>
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
