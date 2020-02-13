@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request, jsonify, render_template, abort
 from . import main_bp as bp
-from .form import LoginForm
+from .form import LoginForm, ServiceForm
 from ..models import User, AuthLog, db, Service
 from flask_login import current_user, login_user, login_required, logout_user
 
@@ -48,6 +48,20 @@ def login():
         log_activity("Success", form.username.data)
         return redirect(url_for('main.index'))
     return render_template('login.html', title='Sign In', form=form)
+
+
+@bp.route('/service', methods=['GET', 'POST'])
+@login_required
+def add_service():
+    """ TODO ERROR MESSAGES"""
+    form = ServiceForm()
+    if form.validate_on_submit():
+        user = Service(name=form.name.data, description=form.description.data, github=form.github.data, status=int(form.status.data),
+                       port=form.port.data, admin=int(form.admin.data))
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('main.index'))
+    return render_template('add_service.html', title='Add service', form=form)
 
 
 @bp.route('/logout')
