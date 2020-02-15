@@ -10,6 +10,7 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+
 class ServiceForm(FlaskForm):
 
     name = StringField('Service name', validators=[DataRequired()])
@@ -17,5 +18,6 @@ class ServiceForm(FlaskForm):
     status = BooleanField('Is running')
     admin = BooleanField('Only for admin')
     port = IntegerField('Port', validators=[DataRequired()])
+    domain = StringField('Domain name', validators=[DataRequired()])
     github = StringField('Github address', validators=[DataRequired()])
     submit = SubmitField('Add')

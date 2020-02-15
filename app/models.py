@@ -52,17 +52,19 @@ class Service(db.Model):
     updated = db.Column(db.DateTime(), default=datetime.now())
     status = db.Column(db.Boolean, nullable=True)
     admin = db.Column(db.Boolean, nullable=False)
+    domain = db.Column(db.String(32), nullable=False)
     port = db.Column(db.Integer, nullable=False)
     github = db.Column(db.String(64), nullable=True)
 
 
-    def __init__(self, name, status, port, admin=False, description=None, github=None):
+    def __init__(self, name, status, port, domain, admin=False, description=None, github=None):
         self.name = name
         self.status = status
         self.port = port
         self.admin = admin
         self.description = description
         self.github = github
+        self.domain = domain
 
 
 @login.user_loader

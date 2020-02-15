@@ -57,7 +57,7 @@ def add_service():
     form = ServiceForm()
     if form.validate_on_submit():
         user = Service(name=form.name.data, description=form.description.data, github=form.github.data, status=int(form.status.data),
-                       port=form.port.data, admin=int(form.admin.data))
+                       port=form.port.data, admin=int(form.admin.data), domain=form.domain.data)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('main.index'))
