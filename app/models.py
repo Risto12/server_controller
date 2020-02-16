@@ -52,7 +52,7 @@ class Service(db.Model):
     updated = db.Column(db.DateTime(), default=datetime.now())
     status = db.Column(db.Boolean, nullable=True)
     admin = db.Column(db.Boolean, nullable=False)
-    domain = db.Column(db.String(32), nullable=False)
+    domain = db.Column(db.String(64), nullable=False)
     port = db.Column(db.Integer, nullable=False)
     github = db.Column(db.String(64), nullable=True)
 
