@@ -1,3 +1,5 @@
 __pycache__
 .ide*
 conf_env.py
+.well-known
+server.key
